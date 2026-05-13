@@ -50,3 +50,7 @@ int main() {
     
     return 0;
 }
+
+//https://www.geeksforgeeks.org/c/c-program-for-find-the-number-of-islands-set-1-using-dfs/
+//https://www.programiz.com/dsa/graph-dfs
+//https://www.digibeatrix.com/c/id/function-usage/c-language-matrix-operations-guide/
