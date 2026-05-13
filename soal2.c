@@ -7,33 +7,36 @@
  * 
  */
 #include <stdio.h>
-int R,C;
-int Grid[100][100];
-int dfs (int r, int c)
-{
-    if (r < 0 || r >= R || c < 0 || c >= C || Grid[r][c] == '0') return 0;
-    Grid[r][c] = 0;
 
-    int ukuran = 0;
-    ukuran = ukuran + dfs(r - 1, c); 
-    ukuran = ukuran + dfs(r + 1, c); 
-    ukuran = ukuran + dfs(r, c - 1); 
-    ukuran = ukuran + dfs(r, c + 1);
+int R, C;
+char Grid[100][100];
+int dfs(int r, int c) {
+    if (r < 0 || r >= R || c < 0 || c >= C || Grid[r][c] == '0') {
+        return 0;
+    }
+    Grid[r][c] = '0';
+
+    int ukuran = 1;
+    ukuran += dfs(r - 1, c); 
+    ukuran += dfs(r + 1, c); 
+    ukuran += dfs(r, c - 1); 
+    ukuran += dfs(r, c + 1);
+    
     return ukuran;
 }
 
-int main(){
-    if (scanf("%d %d", &R, &C != 0)) return 0;
-    for (int i = 0; i < R; i++)
-    {
-        scanf("%s",Grid[i]);
+int main() {
+    if (scanf("%d %d", &R, &C) != 2) return 0;
+    for (int i = 0; i < R; i++) {
+        scanf("%s", Grid[i]);
     }
-    int totalISLAND = 0;
+
+    int totalISLANDS = 0;
     int totalLARGEST = 0;
     for (int i = 0; i < R; i++) {
         for (int j = 0; j < C; j++) {
             if (Grid[i][j] == '1') {
-                totalISLAND = totalISLAND + 1; 
+                totalISLANDS = totalISLANDS + 1; 
                 int size = dfs(i, j);
                 if (size > totalLARGEST) {
                     totalLARGEST = size;
@@ -41,8 +44,9 @@ int main(){
             }
         }
     }
-    printf("ISLANDS %d\n",totalISLAND);
-    printf("LARGEST %d",totalLARGEST);
-    return 0;
+
+    printf("ISLANDS %d\n", totalISLANDS);
+    printf("LARGEST %d\n", totalLARGEST);
     
+    return 0;
 }
